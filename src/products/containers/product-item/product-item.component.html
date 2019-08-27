@@ -1,1 +1,8 @@
-<p>product-item works!</p>
+<div class="product-item">
+  <app-pizza-form
+    [pizza]="pizza"
+    [toppings]="toppings">
+    <app-pizza-display
+    [pizza]="newPizza"></app-pizza-display>
+  </app-pizza-form>
+</div>

@@ -1,1 +1,10 @@
-<p>pizza-item works!</p>
+<div class="pizza-item-class">
+  <a [routerLink]="['/products', pizza.id]">
+    <app-pizza-display
+      [pizza]="pizza"></app-pizza-display>
+    <h4>
+      <span>{{pizza.name}}</span>
+      <button class="btn btn-ok">View Pizza</button>
+    </h4>
+  </a>
+</div>

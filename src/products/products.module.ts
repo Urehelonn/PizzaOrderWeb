@@ -19,6 +19,8 @@ import {PizzasService} from './services/pizzas.service';
 import * as fromContainers from './containers';
 import * as fromComponents from './components';
 import * as fromServices from './services';
+import {HttpClientModule} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
 
 export const ROUTES: Routes = [
   {path: '', component: fromContainers.ProductsComponent},
@@ -37,6 +39,8 @@ export const ROUTES: Routes = [
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forChild(ROUTES)
   ],
   providers: [

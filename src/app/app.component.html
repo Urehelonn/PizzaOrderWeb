@@ -1,3 +1,4 @@
+<!--      ======================= Header ========================        -->
 <nav>
   <div class="outline"><img src="../../assets/img/logo.png"></div>
   <div class="outline"><h1>Menu</h1></div>
@@ -5,35 +6,17 @@
 
 <div class="container">
   <div class="container-nav">
-    <a routerLink="" routerLinkActive="active">Products</a>
+    <a routerLink="products" routerLinkActive="active">Products</a>
   </div>
 
   <div class="container-content">
-    <div class="container-content-new">
-      <a class="btn btn-ok">Pizza New</a>
-    </div>
-    <div class="container-content-list">
-
-      <div class="pizza-item">
-        <div class="pizza-item-class">
-          <a>
-            <div class="pizza-display">
-              <div class="pizza-display-class">
-                <img src="../assets/img/pizza.svg">
-              </div>
-            </div>
-            <h4>
-              <span>Mark2Win Pizza</span>
-              <button class="btn btn-ok">View Pizza</button>
-            </h4>
-          </a>
-        </div>
-      </div>
-    </div>
+    <router-outlet></router-outlet>
   </div>
 </div>
 
 
+
+<!--      ======================= Footer ========================        -->
 <footer>
   <div class="foot-content">Contact Us</div>
   <div class="foot-content">News & Resource</div>

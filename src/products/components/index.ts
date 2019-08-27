@@ -6,7 +6,7 @@ import {PizzaToppingsComponent} from './pizza-toppings/pizza-toppings.component'
 import {Routes} from '@angular/router';
 
 export const ROUTES: Routes = [
-  {path:'', }
+  // {path: '', }
 ];
 
 export const components: any[] = [

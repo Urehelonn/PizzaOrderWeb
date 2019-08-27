@@ -1,1 +1,6 @@
-<p>pizza-toppings works!</p>
+<div>
+  <div *ngFor="let tp of toppings">
+    <img src="/assets/img/toppings/{{tp.name}}.svg" alt="">
+    <p>{{tp.name}}</p>
+  </div>
+</div>

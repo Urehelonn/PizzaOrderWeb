@@ -1,1 +1,9 @@
-<p>pizza-display works!</p>
+<div class="pizza-display-class">
+  <div class="pizza-display-class-base">
+    <img src="../assets/img/pizza.svg"><img
+    *ngFor="let topping of pizza?.toppings; index as i"
+    class="pizza-display-class-topping"
+    src="../../../assets/img/toppings/{{topping.name}}.svg"
+    [style.zIndex]="i">
+  </div>
+</div>

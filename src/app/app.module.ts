@@ -4,11 +4,8 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {Routes} from '@angular/router';
-
-const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'products'},
-  {path: 'products', loadChildren: '../products.products.module#ProductsModule'},
-];
+import {ProductsModule} from '../products/products.module';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +13,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

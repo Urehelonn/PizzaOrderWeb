@@ -1,1 +1,21 @@
-<p>pizza-form works!</p>
+<div>
+  <form [formGroup]="pform" action="">
+    <label>
+      <h4>Pizza Name</h4>
+      <input type="text" placeholder=""
+             formControlName="name">
+      <div>
+        <p>Pizza must have a name</p>
+      </div>
+    </label>
+    <label>
+      <h4>Select Topping(s)</h4>
+      <div>
+        <app-pizza-toppings
+          [toppings]="toppings"
+          formControlName="toppings"></app-pizza-toppings>
+      </div>
+    </label>
+  </form>
+  <ng-content></ng-content>
+</div>
