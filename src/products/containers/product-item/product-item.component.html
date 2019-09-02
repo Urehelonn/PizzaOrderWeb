@@ -1,8 +1,12 @@
 <div class="product-item">
   <app-pizza-form
     [pizza]="pizza"
-    [toppings]="toppings">
+    [toppings]="toppings"
+    (selected)="onSelect($event)"
+    (pizzaCreate)="pizzaOnCreate($event)"
+  (pizzaChangeSave)="pizzaOnChange($event)"
+    (pizzaDelete)="pizzaOnDelete($event)">
     <app-pizza-display
-    [pizza]="newPizza"></app-pizza-display>
+      [pizza]="newPizza"></app-pizza-display>
   </app-pizza-form>
 </div>

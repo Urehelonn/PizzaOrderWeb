@@ -1,6 +1,9 @@
-<div>
-  <div *ngFor="let tp of toppings">
+<div class="pizza-toppings">
+  <div *ngFor="let tp of toppings"
+       class="pizza-toppings-item"
+       [class.active]="ifHasTopping(tp)"
+       (click)="selectTopping(tp)">
     <img src="/assets/img/toppings/{{tp.name}}.svg" alt="">
-    <p>{{tp.name}}</p>
+    {{tp.name}}
   </div>
 </div>

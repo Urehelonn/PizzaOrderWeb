@@ -19,9 +19,10 @@ export class PizzaToppingsComponent implements ControlValueAccessor {
 
   @Input() toppings: Topping;
   value: Topping[];
-  isDisabled: boolean = false;
+  isDisabled = false;
 
   constructor() {
+    this.value = [];
   }
 
   private onTouch;
@@ -44,5 +45,19 @@ export class PizzaToppingsComponent implements ControlValueAccessor {
     this.isDisabled = isDisabled;
   }
 
+  ifHasTopping(topping: Topping) {
+    return this.value.some(val => (val.id === topping.id));
+  }
+
+  selectTopping(tp: Topping) {
+    if (this.ifHasTopping(tp)) {
+      this.value = this.value.filter(item => item.id !== tp.id);
+    } else {
+      this.value = [...this.value, tp];
+    }
+
+    this.onTouch();
+    this.onModelChange(this.value);
+  }
 
 }

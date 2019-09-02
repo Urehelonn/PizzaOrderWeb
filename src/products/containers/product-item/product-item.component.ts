@@ -24,16 +24,43 @@ export class ProductItemComponent implements OnInit {
   ngOnInit() {
     this.pizzaService.getPizzas().subscribe(pizzas => {
       const id = this.route.snapshot.params.id;
-      this.pizza = id === 'new' ?
-        {} :
-        pizzas.find(
-          piz => piz.id === parseInt(id, 10)
-        );
+      this.pizza = (id === 'new') ? {} : pizzas.find(
+        piz => piz.id === parseInt(id, 10)
+      );
       this.newPizza = this.pizza;
       this.toppingService.getToppings().subscribe(tops => {
         this.toppings = tops;
       });
     });
+  }
+
+  onSelect(tps: Topping[]) {
+    this.newPizza.toppings = tps;
+  }
+
+  pizzaOnChange(pizza: Pizza) {
+    this.pizzaService.updatePizza(pizza).subscribe(() => {
+      this.router.navigate([`/products/`]);
+    });
+  }
+
+  pizzaOnCreate(pizza: Pizza) {
+    this.pizzaService.createPizza(pizza).subscribe(piz => {
+      this.router.navigate([`/products/`]);
+    });
+  }
+
+  pizzaOnDelete(pizza: Pizza) {
+    const remove = window.confirm('Are you sure?');
+    if (remove && pizza.id) {
+      this.pizzaService.deletePizza(pizza).subscribe(() => {
+        this.router.navigate([`/products/`]);
+      });
+    }
+
+    if (remove && !pizza.id) {
+      this.router.navigate([`/products/`]);
+    }
   }
 
 }

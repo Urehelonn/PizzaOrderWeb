@@ -9,9 +9,10 @@ import {Pizza} from '../../models/pizza.model';
 export class PizzaDisplayComponent implements OnInit {
 
   @Input() pizza: Pizza;
-  constructor() { }
 
-  ngOnInit() {
+  constructor() {
   }
+
+  ngOnInit() {}
 
 }
