@@ -1,0 +1,10 @@
+<div>
+  <ng-container *ngIf="message$ | async as messages">
+<!--    {{messages | json}}-->
+    <div class="alert alert-{{msg.type}} alert-dismissible" *ngFor="let msg of messages">
+      <button type="button" class="close" aria-label="Close"
+      (click)="msgOnClickClose(msg)"><span aria-hidden="true">&times;</span></button>
+      {{msg.msg}}
+    </div>
+  </ng-container>
+</div>
