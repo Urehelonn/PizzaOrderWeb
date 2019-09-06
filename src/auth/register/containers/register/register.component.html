@@ -1,0 +1,8 @@
+<div>
+  <app-auth-form>
+    <h2>Register</h2>
+    <a routerLink="../../../auth/login">Already Registered?</a>
+    <button type="submit" class="fadeIn fourth btn btn-primary">Create User</button>
+    <div class="error" *ngIf="hasError">{{hasError}}</div>
+  </app-auth-form>
+</div>

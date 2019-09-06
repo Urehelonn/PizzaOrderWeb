@@ -4,7 +4,7 @@ import {distinctUntilChanged, pluck} from 'rxjs/operators';
 
 export enum MessageType {
   Info = 'info',
-  Error = 'error',
+  Danger = 'danger',
   Success = 'success',
   Warning = 'warning',
   Primary = 'primary',

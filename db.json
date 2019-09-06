@@ -165,6 +165,14 @@
         {
           "id": 6,
           "name": "mushroom"
+        },
+        {
+          "id": 8,
+          "name": "onion"
+        },
+        {
+          "id": 11,
+          "name": "sweetcorn"
         }
       ]
     },

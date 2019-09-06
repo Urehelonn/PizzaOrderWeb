@@ -1,0 +1,45 @@
+<!-- template from website: https://bootsnipp.com/snippets/dldxB  -->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+
+    <ng-content select="h2">
+    </ng-content>
+
+    <!-- Login Form -->
+    <form [formGroup]="authForm" (submit)="onSubmit()">
+      <input type="text" id="login"
+             class="fadeIn second" name="login"
+             placeholder="Username"
+             formControlName="username">
+      <small *ngIf="usernameRequired" class="form-text text-muted">
+        Username is required.
+      </small>
+      <input type="password" id="password" class="fadeIn third"
+             name="login" placeholder="password"
+             formControlName="password">
+      <small *ngIf="passwordRequired" class="form-text text-muted">
+        Password is required.
+      </small>
+      <small *ngIf="passwordMinLength" class="form-text text-muted">
+        Password need more than 4 digits.
+      </small>
+      <br>
+      <ng-content select=".error"></ng-content>
+      <div class="auth-form-action">
+        <ng-content select="button"></ng-content>
+      </div>
+      <br>
+      <div class="auth-form-toggle">
+        <ng-content select="a"></ng-content>
+      </div>
+      <br>
+    </form>
+
+    <!-- Remind Passowrd -->
+    <!--    <div id="formFooter">-->
+    <!--      <a class="underlineHover" href="#">Forgot Password?</a>-->
+    <!--    </div>-->
+
+  </div>
+</div>

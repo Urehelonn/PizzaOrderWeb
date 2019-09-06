@@ -3,7 +3,7 @@ import {Pizza} from '../../models/pizza.model';
 import {Topping} from '../../models/topping';
 import {PizzasService, ToppingsService} from '../../services';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Message, MessageService, MessageType} from '../../../auth/shared/message.service';
+import {Message, MessageService, MessageType} from '../../../auth/shared/services/message.service';
 
 @Component({
   selector: 'app-product-item',

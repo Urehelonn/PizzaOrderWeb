@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
-import {Message, MessageService, MessageType} from '../../message.service';
+import {Message, MessageService, MessageType} from '../../services/message.service';
 
 @Component({
   selector: 'app-message',
@@ -17,7 +17,7 @@ export class MessageComponent implements OnInit, OnDestroy {
   }
 
   msgOnClickClose(msg: Message) {
-    this.messageService.unset(msg.type, msg);
+    this.messageService.unset(MessageType.Info, msg);
   }
 
   ngOnInit() {
