@@ -40,9 +40,7 @@ export class AuthFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('sub');
     if (this.authForm.valid) {
-      console.log('emit');
       this.submitAuthFormEvent.emit(this.authForm);
     }
   }

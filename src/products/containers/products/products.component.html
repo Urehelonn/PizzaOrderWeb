@@ -3,7 +3,7 @@
 </div>
 
 <div class="container-content-list">
-  <div *ngIf="!!!((pizzas)?.length)">
+  <div *ngIf="!pizzas || pizzas?.length<1" id="noPizMsg">
     No pizzas, please click 'Pizza New' button to add new pizza!
   </div>
   <app-pizza-item

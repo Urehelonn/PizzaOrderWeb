@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<PizzaError>(`${environment.apiUrl}/auth/login`,
+    return this.http.post<PizzaError>(`${environment.apiUrl}/login`,
       {username, password}).pipe(map(res => {
       console.log(res);
       if (res.data && res.data.token) {

@@ -93,6 +93,7 @@ a {
       flex-wrap: wrap;
       font-family: $cs-font;
       color: whitesmoke;
+      justify-content: center;
 
       app-pizza-item {
         background: $default-bc;

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:3838',
-  userStoreKey: '_yummyPizza@pizza'
+  userStoreKey: 'pizza_user_token'
 };
 
 /*
