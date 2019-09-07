@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {User} from '../../models/user';
+import {PizzaError, User} from '../../models/user';
 import {environment} from '../../../environments/environment';
 
 @Injectable({
@@ -12,16 +12,20 @@ export class UserService {
   }
 
   getAll() {
-    return this.http.get<User[]>(`${environment.apiUrl}/users`);
+    return this.http.get<PizzaError>(`${environment.apiUrl}/users`);
   }
 
   getById(id: string) {
-    return this.http.get<User>(`${environment.apiUrl}/${id}`);
+    return this.http.get<PizzaError>(`${environment.apiUrl}/${id}`);
   }
 
   createUser(user: User) {
-    return this.http.post<User>(`${environment.apiUrl}/users`, user);
+    return this.http.post<PizzaError>(`${environment.apiUrl}/users`, user);
   }
 
+  checkUserDuplicated(username: string) {
+    return this.http.get<PizzaError>(
+      `${environment.apiUrl}/users/checkuser/${username}`);
+  }
 
 }

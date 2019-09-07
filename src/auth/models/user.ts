@@ -2,8 +2,9 @@ import {Roles} from './roles';
 
 export class User {
   id?: string;
+  password: string;
   username: string;
-  role: Roles;
+  role: Roles[];
   token?: string;
 }
 

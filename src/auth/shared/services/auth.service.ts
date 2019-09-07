@@ -15,7 +15,6 @@ export class AuthService {
   public currUser: Observable<User>;
 
   constructor(private http: HttpClient) {
-    //  TODO: add user from local storage
     this.currUserSubj = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem(environment.userStoreKey)));
     this.currUser = this.currUserSubj.asObservable();

@@ -8,20 +8,38 @@
 
     <!-- Login Form -->
     <form [formGroup]="authForm" (submit)="onSubmit()">
+      <label for="login">Username</label>
       <input type="text" id="login"
-             class="fadeIn second" name="login"
+             class="fadeIn second form-control" name="login"
              placeholder="Username"
-             formControlName="username">
-      <small *ngIf="usernameRequired" class="form-text text-muted">
+             [ngClass]="{'is-valid':!(usernameRequired||usernameMinLength||usernameInUse)
+             , 'is-invalid': (usernameRequired||usernameMinLength||usernameInUse)}"
+             formControlName="username"
+             #usernameInput>
+      <div class="spinner-border text-secondary" role="status" *ngIf="usernameChecking">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <small *ngIf="usernameRequired" class="form-text text-muted invalid-feedback">
         Username is required.
       </small>
-      <input type="password" id="password" class="fadeIn third"
+      <small *ngIf="usernameMinLength" class="form-text text-muted invalid-feedback">
+        Username need more than 4 digits.
+      </small>
+      <small *ngIf="usernameInUse" class="form-text text-muted invalid-feedback">
+        Username is already in used.
+      </small>
+      {{usernameInUse}}
+      <!--      password      -->
+      <label for="password">Password</label>
+      <input type="password" id="password" class="fadeIn third form-control"
              name="login" placeholder="password"
+             [ngClass]="{'is-valid':!(passwordMinLength||passwordRequired)
+             , 'is-invalid': (passwordMinLength||passwordRequired)}"
              formControlName="password">
-      <small *ngIf="passwordRequired" class="form-text text-muted">
+      <small *ngIf="passwordRequired" class="form-text text-muted invalid-feedback">
         Password is required.
       </small>
-      <small *ngIf="passwordMinLength" class="form-text text-muted">
+      <small *ngIf="passwordMinLength" class="form-text text-muted invalid-feedback">
         Password need more than 4 digits.
       </small>
       <br>

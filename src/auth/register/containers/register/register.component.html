@@ -1,8 +1,15 @@
 <div>
-  <app-auth-form>
+  <app-auth-form (submitAuthFormEvent)="registerUser($event)"
+  (nameCheck)="onCheckName($event)"
+  [usernameChecking]="nameCheckingSpinnerOn"
+  [usernameInUse]="usernameInUse">
     <h2>Register</h2>
-    <a routerLink="../../../auth/login">Already Registered?</a>
-    <button type="submit" class="fadeIn fourth btn btn-primary">Create User</button>
+    <a routerLink="/auth/login">Already Registered?</a>
+    <button type="submit" class="fadeIn fourth btn btn-primary" [disabled]="processing">Create User
+      <div class="spinner-border text-info" role="status" *ngIf="processing">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </button>
     <div class="error" *ngIf="hasError">{{hasError}}</div>
   </app-auth-form>
 </div>
