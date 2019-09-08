@@ -35,7 +35,7 @@ export class AuthFormComponent implements OnInit {
     fromEvent(this.usernameIn.nativeElement, 'keyup')
       .pipe(debounceTime(800),
         filter(obj =>
-          this.inputControl.value.length > 4
+          this.inputControl.value.length >= 4
         ),
         distinctUntilChanged()
       )

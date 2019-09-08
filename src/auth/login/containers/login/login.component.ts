@@ -26,8 +26,9 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/']);
     }, error => {
       console.log('login failed, with following error: ');
-      console.log(error);
-      this.msgService.set(MessageType.Info, new Message('Login failed!', MessageType.Danger));
+      console.log(error.error.msg);
+      this.msgService.set(MessageType.Info,
+        new Message('Login failed! ' + error.error.msg, MessageType.Danger));
     });
   }
 

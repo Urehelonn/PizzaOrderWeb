@@ -1,5 +1,39 @@
-#menuIcon{
+#menuIcon {
   color: white;
   font-size: 40px;
   margin: 30px;
+}
+
+#wrapper {
+  overflow: auto;
+  width: 100%;
+  color: white;
+
+  .containerLeft {
+    float: left;
+  }
+
+  .containerRight {
+    float: right;
+  }
+}
+
+#dropDownToggle {
+  color: white;
+}
+
+.fa {
+  color: white;
+  font-size: 30px;
+}
+
+.navbar {
+  height: 10vh;
+  justify-content: normal;
+
+  .navbar-toggler {
+    position: static;
+    font-size: 30px;
+    right: 5px;
+  }
 }

@@ -8,7 +8,7 @@ import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class  AuthService {
 
   private currUserSubj: BehaviorSubject<User>;
 
@@ -20,17 +20,17 @@ export class AuthService {
     this.currUser = this.currUserSubj.asObservable();
   }
 
-  public get currentUser(): User {
+  public get currentUser(): any {
     return this.currUserSubj.value;
   }
 
   login(username: string, password: string) {
     return this.http.post<PizzaError>(`${environment.apiUrl}/login`,
       {username, password}).pipe(map(res => {
-      console.log(res);
+      // console.log(res);
       if (res.data && res.data.token) {
         // store user detail and jwt to local
-        localStorage.setItem(environment.userStoreKey, JSON.stringify(res.data, res.data.token));
+        localStorage.setItem(environment.userStoreKey, JSON.stringify(res.data));
         this.currUserSubj.next(res.data.user);
       }
       return res;
