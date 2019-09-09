@@ -4,6 +4,7 @@ import {PizzaError, User} from '../../models/user';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {map} from 'rxjs/operators';
+import {Roles} from '../../models/roles';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,24 @@ export class  AuthService {
   logout() {
     localStorage.removeItem(environment.userStoreKey);
     this.currUserSubj.next(null);
+  }
+
+  hasRight(roles: string[]): boolean {
+    if (this.currentUser &&
+      this.currentUser.user &&
+      this.currentUser.user.role.some(r => roles.indexOf(r.toLowerCase()) > -1)) {
+      return true;
+    }
+    return false;
+  }
+
+  get canEditProduct() {
+    if (this.currentUser &&
+      this.currentUser.user &&
+      this.currentUser.user.role.some(r => r.toLowerCase() === Roles.Admin)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

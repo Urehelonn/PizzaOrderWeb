@@ -1,4 +1,5 @@
-<div class="container-content-new">
+<div class="container-content-new"
+     *ngIf="authService?.canEditProduct">
   <a routerLink="./new" class="btn btn-ok">Pizza New</a>
 </div>
 

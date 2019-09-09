@@ -23,11 +23,20 @@
       </div>
     </label>
     <ng-content></ng-content>
-    <div class="pizza-form-input-actions">
+    <div class="pizza-form-input-actions"
+         *ngIf="canEdit else commonUser">
       <button *ngIf="!exists" class="btn btn-ok" (click)="pizzaOnCreate()">Create Pizza</button>
       <button *ngIf="exists" class="btn btn-ok" (click)="pizzaOnChange()">Save Changes</button>
       <button *ngIf="exists" class="btn btn-warning" (click)="pizzaOnDelete()">Delete Pizza</button>
       <button *ngIf="!exists" class="btn btn-warning" (click)="pizzaOnDelete()">Cancel Creating</button>
     </div>
+
+    <ng-template #commonUser>
+      <div class="pizza-form-actions">
+        <button (click)="onPlaceOrder()"
+                class="btn btn-warning">Order
+        </button>
+      </div>
+    </ng-template>
   </form>
 </div>

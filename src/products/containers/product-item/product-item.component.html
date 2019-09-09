@@ -2,6 +2,7 @@
   <app-pizza-form
     [pizza]="pizza"
     [toppings]="toppings"
+    [canEdit]="authService?.canEditProduct"
     (selected)="onSelect($event)"
     (pizzaCreate)="pizzaOnCreate($event)"
   (pizzaChangeSave)="pizzaOnChange($event)"

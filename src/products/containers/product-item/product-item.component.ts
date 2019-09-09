@@ -4,6 +4,7 @@ import {Topping} from '../../models/topping';
 import {PizzasService, ToppingsService} from '../../services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Message, MessageService, MessageType} from '../../../auth/shared/services/message.service';
+import {AuthService} from '../../../auth/shared/services/auth.service';
 
 @Component({
   selector: 'app-product-item',
@@ -12,26 +13,29 @@ import {Message, MessageService, MessageType} from '../../../auth/shared/service
 })
 export class ProductItemComponent implements OnInit {
 
-  pizza: Pizza;
-  newPizza: Pizza;
+  pizza: any;
+  newPizza: any;
   toppings: Topping[];
 
   constructor(private pizzaService: PizzasService,
               private toppingService: ToppingsService,
               private route: ActivatedRoute,
               private router: Router,
-              private msgService: MessageService) {
+              private msgService: MessageService,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
     this.pizzaService.getPizzas().subscribe(pizzas => {
       const id = this.route.snapshot.params.id;
       this.pizza = (id === 'new') ? {} : pizzas.find(
-        piz => piz.id === parseInt(id, 10)
+        piz => piz.id === id
       );
       this.newPizza = this.pizza;
       this.toppingService.getToppings().subscribe(tops => {
-        this.toppings = tops;
+        this.toppings = tops.data;
+      }, err => {
+        console.log('http toppings', err);
       });
     });
   }

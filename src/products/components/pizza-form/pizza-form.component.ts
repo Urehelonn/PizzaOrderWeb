@@ -14,6 +14,7 @@ export class PizzaFormComponent implements OnInit, OnChanges {
 
   @Input() pizza: Pizza;
   @Input() toppings: Topping[];
+  @Input() canEdit: boolean;
 
   @Output() selected: EventEmitter<Topping[]>;
   @Output() pizzaCreate: EventEmitter<Pizza>;
@@ -74,5 +75,9 @@ export class PizzaFormComponent implements OnInit, OnChanges {
   pizzaOnDelete() {
     const {value, valid} = this.pform;
     this.pizzaDelete.emit(value);
+  }
+
+  onPlaceOrder() {
+    console.log('order place');
   }
 }

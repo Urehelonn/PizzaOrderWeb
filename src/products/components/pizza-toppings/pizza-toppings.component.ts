@@ -16,7 +16,6 @@ const PIZZA_TOPPINGS_ACCESSOR = {
 })
 export class PizzaToppingsComponent implements ControlValueAccessor {
 
-
   @Input() toppings: Topping;
   value: Topping[];
   isDisabled = false;
