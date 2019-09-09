@@ -1,21 +1,32 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {PizzaError, User} from '../../models/user';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {map} from 'rxjs/operators';
 import {Roles} from '../../models/roles';
+import {Message, MessageService, MessageType} from './message.service';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class  AuthService {
+export class AuthService {
 
   private currUserSubj: BehaviorSubject<User>;
 
   public currUser: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private msgService: MessageService,
+              private router: Router) {
+    this.checkToken().subscribe(res => {
+    }, error => {
+      console.log(error);
+      this.msgService.set(MessageType.Info,
+        new Message('Stored user expired, please login again.', MessageType.Warning));
+      this.router.navigateByUrl('/auth/login');
+    });
     this.currUserSubj = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem(environment.userStoreKey)));
     this.currUser = this.currUserSubj.asObservable();
@@ -36,6 +47,11 @@ export class  AuthService {
       }
       return res;
     }));
+  }
+
+  checkToken() {
+    return this.http.get<PizzaError>(`${environment.apiUrl}/check`,
+      {headers: this.jwt()});
   }
 
   logout() {
@@ -59,6 +75,16 @@ export class  AuthService {
       return true;
     } else {
       return false;
+    }
+  }
+
+
+  // register token header
+  private jwt() {
+    // register authorization header with jwt token
+    const token = JSON.parse(localStorage.getItem('pizza_user_token')).token;
+    if (token) {
+      return new HttpHeaders().set('Authorization', token);
     }
   }
 }

@@ -61,6 +61,13 @@ export class PizzaFormComponent implements OnInit, OnChanges {
   pizzaOnCreate() {
     const {value, valid} = this.pform;
     if (valid) {
+      // extract all ids from toppings and insert back
+      const toppings = [];
+      value.toppings.forEach(tp => {
+        toppings.push(tp.id);
+      });
+      value.toppings = toppings;
+      // console.log(value);
       this.pizzaCreate.emit(value);
     }
   }
@@ -68,6 +75,13 @@ export class PizzaFormComponent implements OnInit, OnChanges {
   pizzaOnChange() {
     const {value, valid, touched} = this.pform;
     if (touched && valid) {
+      // extract all ids from toppings and insert back
+      const toppings = [];
+      value.toppings.forEach(tp => {
+        toppings.push(tp.id);
+      });
+      value.toppings = toppings;
+      // console.log(value);
       this.pizzaChangeSave.emit({...this.pizza, ...value});
     }
   }

@@ -45,9 +45,15 @@ export class ProductItemComponent implements OnInit {
   }
 
   pizzaOnChange(pizza: Pizza) {
+    // console.log(pizza);
     this.pizzaService.updatePizza(pizza).subscribe(() => {
       this.router.navigate([`/products/`]);
       this.msgService.set(MessageType.Info, new Message(`${pizza.name} has been changed!`, MessageType.Info));
+    }, error => {
+      console.log(error);
+      this.router.navigate([`auth/login`]);
+      this.msgService.set(MessageType.Info, new Message(
+        `${pizza.name} change failed! Please try login again with an admin account.`, MessageType.Info));
     });
   }
 

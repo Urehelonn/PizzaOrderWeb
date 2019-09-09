@@ -45,6 +45,7 @@ export class PizzasService {
   }
 
   updatePizza(payload: Pizza): Observable<Pizza> {
+    // console.log(payload);
     return this.http.patch<Pizza>(`${PIZZA_URL}/${payload.id}`,
       payload, {headers: this.jwt()});
   }
