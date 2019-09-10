@@ -10,6 +10,8 @@ import {PizzaDisplayComponent} from './components/pizza-display/pizza-display.co
 import {PizzaFormComponent} from './components/pizza-form/pizza-form.component';
 import {PizzaItemComponent} from './components/pizza-item/pizza-item.component';
 import {PizzaToppingsComponent} from './components/pizza-toppings/pizza-toppings.component';
+import { OrderFormComponent } from './components/order-form/order-form.component';
+import { ProductProfileComponent } from './components/product-file/product-profile.component';
 
 // ===================================================    SERVICES IMPORT    ============================================================
 import {ToppingsService} from './services/toppings.service';
@@ -17,8 +19,6 @@ import {PizzasService} from './services/pizzas.service';
 
 
 import * as fromContainers from './containers';
-import * as fromComponents from './components';
-import * as fromServices from './services';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 
@@ -35,7 +35,9 @@ export const ROUTES: Routes = [
     PizzaDisplayComponent,
     PizzaFormComponent,
     PizzaItemComponent,
-    PizzaToppingsComponent
+    PizzaToppingsComponent,
+    OrderFormComponent,
+    ProductProfileComponent
   ],
   imports: [
     CommonModule,

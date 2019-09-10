@@ -1,0 +1,17 @@
+
+
+
+
+.order-form {
+  margin: 10px 0 10px 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  &-item {
+    padding: 0 5px 0 5px;
+    dislay: flex;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+  }
+}

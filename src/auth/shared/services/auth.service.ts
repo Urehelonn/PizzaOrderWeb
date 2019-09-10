@@ -78,7 +78,6 @@ export class AuthService {
     }
   }
 
-
   // register token header
   private jwt() {
     // register authorization header with jwt token

@@ -36,12 +36,12 @@
       <a routerLink="users/{{authService?.currentUser?.user?.id}}"
          class="dropdown-item">My Profile</a>
       <a routerLink="auth/logout" class="dropdown-item">Sign out</a>
+      <div class="dropdown-divider"></div>
+      <a routerLink="orders" class="dropdown-item">Orders</a>
     </div>
     <div *ngIf="!authService.currentUser">
       <a routerLink="/auth/login"
          class="dropdown-item">Login</a>
-      <div class="dropdown-divider"></div>
-      <a routerLink="orders" class="dropdown-item">Orders</a>
     </div>
   </div>
 </nav>

@@ -1,0 +1,21 @@
+<div class="pizza-orderplacing">
+  <div class="pizza-orderplacing-item"
+       [class.bar-gradient]="selectedProfile(order)"
+       [class.bar-highlighted]="selectedProfile(order)"
+       [class.active]="selectedProfile(order)"
+       (click)="selectOrder(order)">
+  </div>
+  <div class="order-form">
+    <div class="order-form-item">
+      <button class="cart-btn quantity-button">-</button>
+      <div class="cart-quantity">{{quantity}}</div>
+      <button class="cart-btn quantity-button">+</button>
+    </div>
+    <div class="order-form-item cart-price">{{totalPrice}}</div>
+    <div class="order-form-item">
+      <button class="cart-btn green-button"
+              [disabled]="!quantity">
+        <i class="fa fa-shopping-basket"></i>Add</button>
+    </div>
+  </div>
+</div>

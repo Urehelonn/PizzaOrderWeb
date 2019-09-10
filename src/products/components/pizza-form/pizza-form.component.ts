@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges
 import {Pizza} from '../../models/pizza.model';
 import {Topping} from '../../models/topping';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {Order} from '../../models/order.model';
+import {ProductProfile} from '../../models/product-profile.model';
 
 @Component({
   selector: 'app-pizza-form',
@@ -15,17 +17,22 @@ export class PizzaFormComponent implements OnInit, OnChanges {
   @Input() pizza: Pizza;
   @Input() toppings: Topping[];
   @Input() canEdit: boolean;
+  @Input() order: Order;
 
   @Output() selected: EventEmitter<Topping[]>;
   @Output() pizzaCreate: EventEmitter<Pizza>;
   @Output() pizzaChangeSave: EventEmitter<Pizza>;
   @Output() pizzaDelete: EventEmitter<Pizza>;
+  @Output() updateOrder: EventEmitter<Order>;
+  @Output() updateProfile: EventEmitter<ProductProfile>;
 
 
   pform = this.fb.group({
     id: '',
     name: ['', Validators.required],
-    toppings: [[]]
+    toppings: [[]],
+    order: [],
+    profiles: []
   });
 
   constructor(private fb: FormBuilder) {
@@ -33,6 +40,8 @@ export class PizzaFormComponent implements OnInit, OnChanges {
     this.pizzaCreate = new EventEmitter<Pizza>();
     this.pizzaChangeSave = new EventEmitter<Pizza>();
     this.pizzaDelete = new EventEmitter<Pizza>();
+    this.updateOrder = new EventEmitter();
+    this.updateProfile = new EventEmitter();
   }
 
   ngOnInit() {
@@ -47,6 +56,20 @@ export class PizzaFormComponent implements OnInit, OnChanges {
     if (this.pizza && this.pizza.id) {
       this.exists = true;
       this.pform.patchValue(this.pizza);
+
+      this.pform.get('toppings').valueChanges.subscribe((value: Topping[]) => {
+        this.selected.emit(value);
+      });
+      this.pform.get('profiles').valueChanges.subscribe((value: ProductProfile) => {
+        this.updateProfile.emit(value);
+      });
+      this.pform.get('order').valueChanges.subscribe((value: Order) => {
+        this.updateOrder.emit(value);
+      });
+      if (this.order) {
+        console.log('patch order');
+        this.pform.patchValue({...this.pizza, order: this.order});
+      }
     }
   }
 

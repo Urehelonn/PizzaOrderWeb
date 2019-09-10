@@ -4,6 +4,7 @@
       <h4>Pizza Name</h4>
       <input type="text" placeholder="e.g. Pepperoni"
              formControlName="name"
+             [readOnly]="!canEdit"
              class="pizza-form-input"
              [class.error]="nameControlInvalid">
       <div *ngIf="nameControlInvalid" class="pizza-form-error">
@@ -23,6 +24,14 @@
       </div>
     </label>
     <ng-content></ng-content>
+
+    <app-product-profile [profiles]="pizza?.profiles"
+    formControlName = "profiles">
+    </app-product-profile>
+
+    <app-order-form [order]="" formControlName="order">
+    </app-order-form>
+
     <div class="pizza-form-input-actions"
          *ngIf="canEdit else commonUser">
       <button *ngIf="!exists" class="btn btn-ok" (click)="pizzaOnCreate()">Create Pizza</button>

@@ -20,14 +20,12 @@ export class PizzaToppingsComponent implements ControlValueAccessor {
   value: Topping[];
   isDisabled = false;
 
+  private onTouch;
+  private onModelChange;
+
   constructor() {
     this.value = [];
   }
-
-  private onTouch;
-
-  private onModelChange;
-
   registerOnChange(fn: any): void {
     this.onModelChange = fn;
   }
