@@ -5,6 +5,9 @@ import {PizzasService, ToppingsService} from '../../services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Message, MessageService, MessageType} from '../../../auth/shared/services/message.service';
 import {AuthService} from '../../../auth/shared/services/auth.service';
+import {Order, OrderStatusType} from '../../models/order.model';
+import {ProductProfile} from '../../models/product-profile.model';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-item',
@@ -16,6 +19,7 @@ export class ProductItemComponent implements OnInit {
   pizza: any;
   newPizza: any;
   toppings: Topping[];
+  order: Order;
 
   constructor(private pizzaService: PizzasService,
               private toppingService: ToppingsService,
@@ -32,6 +36,11 @@ export class ProductItemComponent implements OnInit {
         piz => piz.id === id
       );
       this.newPizza = this.pizza;
+      this.order = {
+        note: '', products: [this.newPizza], deleted: false,
+        paymentId: '', status: OrderStatusType.Placed
+      };
+
       this.toppingService.getToppings().subscribe(tops => {
         this.toppings = tops.data;
       }, err => {
@@ -40,8 +49,14 @@ export class ProductItemComponent implements OnInit {
     });
   }
 
-  onSelect(tps: Topping[]) {
-    this.newPizza.toppings = tps;
+  onSelectTopping(tps: Topping[]) {
+    this.newPizza = {...this.newPizza, tps};
+    this.order.products.filter(p => p.id === this.newPizza.id)
+      .forEach((p: Pizza) => {
+        // p.profiles = this.newPizza.profiles;
+        p.toppings = this.newPizza.tps;
+        // p.toppings.forEach()
+      });
   }
 
   pizzaOnChange(pizza: Pizza) {
@@ -69,7 +84,6 @@ export class ProductItemComponent implements OnInit {
     if (remove && pizza.id) {
       this.pizzaService.deletePizza(pizza).subscribe(() => {
         this.router.navigate([`/products/`]);
-        // this.msgService.set(MessageType.Warning, new Message(`Delete pizza ${pizza.name} succeed!`, MessageType.Warning));
         this.msgService.set(MessageType.Info, new Message(`Delete pizza ${pizza.name} succeed!`, MessageType.Info));
       });
     }
@@ -78,6 +92,14 @@ export class ProductItemComponent implements OnInit {
       this.router.navigate([`/products/`]);
       this.msgService.set(MessageType.Info, new Message(`Pizza creating canceled!`, MessageType.Info));
     }
+  }
+
+  onUpdateOrder(order: Order) {
+    console.log('new order ->', order);
+  }
+
+  onUpdateProfile(profile: ProductProfile) {
+    // console.log('new profile ->', profile);
   }
 
 }

@@ -1,9 +1,10 @@
 <div class="pizza-profiles">
   <div class="pizza-profiles-item"
-       *ngFor="let tp of profiles"
+       *ngFor="let tp of value"
        [class.bar-gardient]="selectedProfile(tp)"
        [class.bar-highlighted]="selectedProfile(tp)"
-       [class.active]="selectedProductProfile(tp)"
+       [class.active]="selectedProfile(tp)"
+       (click)="clickOnProfile(tp)"
        (mouseover)="showDesc(tp)">
     {{tp.name}}
   </div>

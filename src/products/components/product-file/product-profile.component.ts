@@ -17,7 +17,6 @@ const PRODUCT_PROFILE_ACCESSOR = {
 })
 export class ProductProfileComponent implements ControlValueAccessor {
 
-  @Input() profiles: ProductProfile[];
   value: ProductProfile[];
   isDisabled = false;
 
@@ -50,8 +49,8 @@ export class ProductProfileComponent implements ControlValueAccessor {
     return profile.selected;
   }
 
-  selectedProductProfile(pro: ProductProfile) {
-    this.profiles.map(pp => {
+  clickOnProfile(pro: ProductProfile) {
+    this.value.map(pp => {
       pp.default = false;
       pp.selected = false;
       if (pro.name === pp.name) {

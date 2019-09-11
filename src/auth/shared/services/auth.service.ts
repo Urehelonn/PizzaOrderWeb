@@ -20,13 +20,18 @@ export class AuthService {
   constructor(private http: HttpClient,
               private msgService: MessageService,
               private router: Router) {
-    this.checkToken().subscribe(res => {
-    }, error => {
-      console.log(error);
-      this.msgService.set(MessageType.Info,
-        new Message('Stored user expired, please login again.', MessageType.Warning));
-      this.router.navigateByUrl('/auth/login');
-    });
+    if (localStorage.getItem(environment.userStoreKey)) {
+      this.checkToken().subscribe(res => {
+      }, error => {
+        console.log(error);
+        this.msgService.set(MessageType.Info,
+          new Message('Stored user expired, please login again.', MessageType.Warning));
+        this.router.navigateByUrl('/auth/login');
+      });
+    } else {
+      this.router.navigate(['/auth/login']);
+    }
+
     this.currUserSubj = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem(environment.userStoreKey)));
     this.currUser = this.currUserSubj.asObservable();

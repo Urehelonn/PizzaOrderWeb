@@ -1,17 +1,20 @@
 <div class="pizza-orderplacing">
   <div class="pizza-orderplacing-item"
-       [class.bar-gradient]="selectedProfile(order)"
-       [class.bar-highlighted]="selectedProfile(order)"
-       [class.active]="selectedProfile(order)"
-       (click)="selectOrder(order)">
+       [class.bar-gradient]="selectedOrder()"
+       [class.bar-highlighted]="selectedOrder()"
+       [class.active]="selectedOrder()"
+       (click)="clickOnOrder()">
   </div>
   <div class="order-form">
     <div class="order-form-item">
-      <button class="cart-btn quantity-button">-</button>
+      <button class="cart-btn quantity-button"
+      (click)="removeOneProduct()"
+      [disabled]="quantity<=1">-</button>
       <div class="cart-quantity">{{quantity}}</div>
-      <button class="cart-btn quantity-button">+</button>
+      <button class="cart-btn quantity-button"
+              (click)="addOneProduct()">+</button>
     </div>
-    <div class="order-form-item cart-price">{{totalPrice}}</div>
+    <div class="order-form-item cart-price">${{totalPrice}}</div>
     <div class="order-form-item">
       <button class="cart-btn green-button"
               [disabled]="!quantity">

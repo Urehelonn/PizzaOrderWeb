@@ -2,12 +2,18 @@
   <app-pizza-form
     [pizza]="pizza"
     [toppings]="toppings"
+    [order]="order"
     [canEdit]="authService?.canEditProduct"
-    (selected)="onSelect($event)"
+
+    (selectedTopping)="onSelectTopping($event)"
     (pizzaCreate)="pizzaOnCreate($event)"
-  (pizzaChangeSave)="pizzaOnChange($event)"
-    (pizzaDelete)="pizzaOnDelete($event)">
+    (pizzaChangeSave)="pizzaOnChange($event)"
+    (pizzaDelete)="pizzaOnDelete($event)"
+
+    (updateOrder)="onUpdateOrder($event)"
+    (updateProfile)="onUpdateProfile($event)"
+  >
     <app-pizza-display
-      [pizza]="newPizza"></app-pizza-display>
+      [pizza]="pizza"></app-pizza-display>
   </app-pizza-form>
 </div>

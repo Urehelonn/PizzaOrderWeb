@@ -19,7 +19,7 @@ export class PizzaFormComponent implements OnInit, OnChanges {
   @Input() canEdit: boolean;
   @Input() order: Order;
 
-  @Output() selected: EventEmitter<Topping[]>;
+  @Output() selectedTopping: EventEmitter<Topping[]>;
   @Output() pizzaCreate: EventEmitter<Pizza>;
   @Output() pizzaChangeSave: EventEmitter<Pizza>;
   @Output() pizzaDelete: EventEmitter<Pizza>;
@@ -36,7 +36,7 @@ export class PizzaFormComponent implements OnInit, OnChanges {
   });
 
   constructor(private fb: FormBuilder) {
-    this.selected = new EventEmitter<Topping[]>();
+    this.selectedTopping = new EventEmitter<Topping[]>();
     this.pizzaCreate = new EventEmitter<Pizza>();
     this.pizzaChangeSave = new EventEmitter<Pizza>();
     this.pizzaDelete = new EventEmitter<Pizza>();
@@ -47,9 +47,16 @@ export class PizzaFormComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.pform.get('toppings').valueChanges.subscribe(
       (val: Topping[]) => {
-        this.selected.emit(val);
+        // console.log('topping change: ', val);
+        this.selectedTopping.emit(val);
       }
     );
+    this.pform.get('profiles').valueChanges.subscribe((value: ProductProfile) => {
+      this.updateProfile.emit(value);
+    });
+    this.pform.get('order').valueChanges.subscribe((value: Order) => {
+      this.updateOrder.emit(value);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -57,15 +64,6 @@ export class PizzaFormComponent implements OnInit, OnChanges {
       this.exists = true;
       this.pform.patchValue(this.pizza);
 
-      this.pform.get('toppings').valueChanges.subscribe((value: Topping[]) => {
-        this.selected.emit(value);
-      });
-      this.pform.get('profiles').valueChanges.subscribe((value: ProductProfile) => {
-        this.updateProfile.emit(value);
-      });
-      this.pform.get('order').valueChanges.subscribe((value: Order) => {
-        this.updateOrder.emit(value);
-      });
       if (this.order) {
         console.log('patch order');
         this.pform.patchValue({...this.pizza, order: this.order});

@@ -25,11 +25,10 @@
     </label>
     <ng-content></ng-content>
 
-    <app-product-profile [profiles]="pizza?.profiles"
-    formControlName = "profiles">
+    <app-product-profile formControlName="profiles">
     </app-product-profile>
 
-    <app-order-form [order]="" formControlName="order">
+    <app-order-form formControlName="order">
     </app-order-form>
 
     <div class="pizza-form-input-actions"

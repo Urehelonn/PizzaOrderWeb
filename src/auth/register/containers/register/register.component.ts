@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.nameCheckingSpinnerOn);
     this.userService.checkUserDuplicated(username)
       .subscribe(res => {
-        console.log(res);
+        // console.log(res);
         if (res.data > 0) {
           this.usernameInUse = true;
         } else {
