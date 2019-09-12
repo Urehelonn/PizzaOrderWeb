@@ -23,7 +23,8 @@ export class OrderFormComponent implements ControlValueAccessor {
   private onTouch;
   private onModelChange;
 
-  constructor() {}
+  constructor() {
+  }
 
   registerOnChange(fn: any): void {
     this.onModelChange = fn;
@@ -60,13 +61,16 @@ export class OrderFormComponent implements ControlValueAccessor {
           }
         );
 
-        // if adding a pizza, skip current product, and continue on calc toppings
+        // if not adding a pizza, skip current product, and continue on calc toppings
         if (!product.category.some(r => r.type === CategoryType.Pizza)) {
           continue;
         }
 
         // calc topping total price
         const pizza = product as Pizza;
+
+        console.log(pizza.toppings);
+
         pizza.toppings.forEach(tp => {
           tp.profiles.filter(p => p.selected).forEach(p => {
             total += p.price;
@@ -106,6 +110,7 @@ export class OrderFormComponent implements ControlValueAccessor {
       return;
     }
     this.value.products.push(this.value.products[0]);
+    console.log('after add pizza', this.value);
     this.onTouch();
     this.onModelChange();
   }

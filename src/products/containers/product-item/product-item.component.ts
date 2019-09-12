@@ -7,7 +7,6 @@ import {Message, MessageService, MessageType} from '../../../auth/shared/service
 import {AuthService} from '../../../auth/shared/services/auth.service';
 import {Order, OrderStatusType} from '../../models/order.model';
 import {ProductProfile} from '../../models/product-profile.model';
-import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-item',
@@ -94,8 +93,8 @@ export class ProductItemComponent implements OnInit {
     }
   }
 
-  onUpdateOrder(order: Order) {
-    console.log('new order ->', order);
+  onUpdateOrder() {
+    console.log('new order ->', this.order);
   }
 
   onUpdateProfile(profile: ProductProfile) {
