@@ -56,8 +56,6 @@ export class OrderFormComponent implements ControlValueAccessor {
           pf.selected);
         selectedProfiles.forEach(pf => {
             total += pf.price;
-            // console.log(pf.name + ' ' + pf.price);
-            // console.log(total);
           }
         );
 
@@ -69,13 +67,11 @@ export class OrderFormComponent implements ControlValueAccessor {
         // calc topping total price
         const pizza = product as Pizza;
 
-        console.log(pizza.toppings);
-
         pizza.toppings.forEach(tp => {
           tp.profiles.filter(p => p.selected).forEach(p => {
             total += p.price;
-            console.log(p.name + ' ' + p.price);
-            console.log(total);
+            // console.log(p.name + ' ' + p.price);
+            // console.log(total);
           });
         });
       }

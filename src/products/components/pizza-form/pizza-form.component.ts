@@ -56,7 +56,7 @@ export class PizzaFormComponent implements OnInit, OnChanges {
     });
     this.pform.get('order').valueChanges.subscribe((value: Order) => {
       this.updateOrder.emit(value);
-      console.log(value);
+      // console.log(value);
     });
   }
 
@@ -66,7 +66,6 @@ export class PizzaFormComponent implements OnInit, OnChanges {
       this.pform.patchValue(this.pizza);
 
       if (this.order) {
-        console.log('patch order');
         this.pform.patchValue({...this.pizza, order: this.order});
       }
     }

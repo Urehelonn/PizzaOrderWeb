@@ -94,7 +94,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   onUpdateOrder() {
-    console.log('new order ->', this.order);
+    // console.log('new order ->', this.order);
   }
 
   onUpdateProfile(profile: ProductProfile) {
