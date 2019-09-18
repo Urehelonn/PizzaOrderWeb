@@ -8,7 +8,8 @@ export enum MessageType {
   Success = 'success',
   Warning = 'warning',
   Primary = 'primary',
-  Secondary = 'secondary'
+  Secondary = 'secondary',
+  PlaceNewOrder = 'placeNew'
 }
 
 export class Message {

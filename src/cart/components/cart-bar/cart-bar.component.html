@@ -1,0 +1,19 @@
+<div id="cart-bar" class="sticky">
+  <div class="pizza-orderplacing">
+    <div class="pizza-orderplacing-item">
+      <div class="order-form">
+        <div class="order-form-item">
+                    {{ (message$ | async | fetchCartInfo).orderNum}} Items
+        </div>
+        <div class="order-form-item">
+                    Total: ${{ (message$ | async | fetchCartInfo).total.toFixed(2)}}
+        </div>
+        <div class="order-form-item">
+          <button class="cart-btn green-button">
+            Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

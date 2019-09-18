@@ -1,8 +1,7 @@
-import {Component, forwardRef, Input} from '@angular/core';
-import {Order, OrderStatusType} from '../../models/order.model';
+import {Component, forwardRef} from '@angular/core';
+import {Order} from '../../models/order.model';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {CategoryType} from '../../models/category.model';
-import {Pizza} from '../../models/pizza.model';
+import {OrderHelper} from '../../../helpers/Order';
 
 const ORDER_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -47,36 +46,11 @@ export class OrderFormComponent implements ControlValueAccessor {
   }
 
   get totalPrice() {
-    let total = 0;
-    if (this.value) {
-      // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < this.value.products.length; i++) {
-        const product = this.value.products[i];
-        const selectedProfiles = product.profiles.filter(pf =>
-          pf.selected);
-        selectedProfiles.forEach(pf => {
-            total += pf.price;
-          }
-        );
-
-        // if not adding a pizza, skip current product, and continue on calc toppings
-        if (!product.category.some(r => r.type === CategoryType.Pizza)) {
-          continue;
-        }
-
-        // calc topping total price
-        const pizza = product as Pizza;
-
-        pizza.toppings.forEach(tp => {
-          tp.profiles.filter(p => p.selected).forEach(p => {
-            total += p.price;
-            // console.log(p.name + ' ' + p.price);
-            // console.log(total);
-          });
-        });
-      }
+    let total = null;
+    if (!!this.value) {
+      total = OrderHelper.totalPrice(this.value.products);
     }
-    return total.toFixed(2);
+    return total;
   }
 
   setDisabledState(isDisabled: boolean): void {
