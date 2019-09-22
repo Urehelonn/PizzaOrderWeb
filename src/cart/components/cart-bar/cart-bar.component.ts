@@ -28,12 +28,12 @@ import {Message, MessageService, MessageType} from '../../../auth/shared/service
   ]
 })
 export class CartBarComponent implements OnInit, OnDestroy {
-  itemsNum: number;
+  items: number;
   message$: Observable<Message[]>;
   subMsg: Subscription;
 
   constructor(private msgService: MessageService) {
-    this.itemsNum = 0;
+    this.items = 0;
   }
 
   ngOnInit() {

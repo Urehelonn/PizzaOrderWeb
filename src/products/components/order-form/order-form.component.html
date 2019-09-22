@@ -17,7 +17,8 @@
     <div class="order-form-item cart-price">${{totalPrice}}</div>
     <div class="order-form-item">
       <button class="cart-btn green-button"
-              [disabled]="!quantity">
+              [disabled]="!quantity"
+      (click)="placeOrder()">
         <i class="fa fa-shopping-basket"></i>Add</button>
     </div>
   </div>

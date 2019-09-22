@@ -84,4 +84,9 @@ export class OrderFormComponent implements ControlValueAccessor {
     this.onTouch();
     this.onModelChange();
   }
+
+  placeOrder() {
+    this.onTouch();
+    this.onModelChange(this.value);
+  }
 }

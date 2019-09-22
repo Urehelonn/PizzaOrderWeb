@@ -47,16 +47,17 @@ export class PizzaFormComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.pform.get('toppings').valueChanges.subscribe(
       (val: Topping[]) => {
-        // console.log('topping change: ', val);
+        console.log('topping change: ', val);
         this.selectedTopping.emit(val);
       }
     );
     this.pform.get('profiles').valueChanges.subscribe((value: ProductProfile) => {
+      console.log('profiles updated: ', value);
       this.updateProfile.emit(value);
     });
     this.pform.get('order').valueChanges.subscribe((value: Order) => {
       this.updateOrder.emit(value);
-      // console.log(value);
+      console.log('order updated: ', value);
     });
   }
 

@@ -93,8 +93,9 @@ export class ProductItemComponent implements OnInit {
     }
   }
 
-  onUpdateOrder() {
-    // console.log('new order ->', this.order);
+  onUpdateOrder(order) {
+    console.log('new order ->', order);
+    this.msgService.set(MessageType.PlaceNewOrder, new Message(JSON.stringify(order), MessageType.PlaceNewOrder));
   }
 
   onUpdateProfile(profile: ProductProfile) {
